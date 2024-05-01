@@ -19,11 +19,11 @@
   - [Data management systems throughput](#data-management-systems-throughput)
   - [Data management systems maximum storage capacity per item](#data-management-systems-maximum-storage-capacity-per-item)
   - [Data management systems maximum connections](#data-management-systems-maximum-connections)
+- [Message brokers](#message-brokers)
+  - [Message brokers throughput](#message-brokers-throughput)
 - [Compute](#compute)
   - [Typycal datacenters server](#typycal-datacenters-server)
   - [Typycal datacenter rack numbers](#typycal-datacenter-rack-numbers)
-- [Message brokers](#message-brokers)
-  - [Message brokers throughput](#message-brokers-throughput)
 - [Other architectural characteristics](#other-architectural-characteristics)
 - [List of references](#list-of-references)
 
@@ -152,15 +152,15 @@ Here are some average throughput numbers for different types of networks and net
 ## Network elements latency
 Here are some average latency numbers for different types of networks and network elements:
 
-| Type of network  | Value     |
-| ---------------- | --------- |
-| Datacenter       | 1-10ms    |
-| Regional         | 10-100ms  |
-| Global           | 150-300ms |
-| Mobile           | 100-500ms |
-| L4 load balancer | 10-100ms  |
-| L7 load balancer | 1-10ms    |
-| API Gateway      | 1-10ms    |
+| Type of network  | Value      |
+| ---------------- | ---------- |
+| Datacenter       | 1-10 ms    |
+| Regional         | 10-100 ms  |
+| Global           | 150-300 ms |
+| Mobile           | 100-500 ms |
+| L4 load balancer | 10-100 ms  |
+| L7 load balancer | 1-10 ms    |
+| API Gateway      | 1-10 ms    |
 
 # Data management
 Data management systems are responsible for storing and managing data. They are used to store and retrieve data, perform complex read and write queries, and process transactions.
@@ -175,32 +175,32 @@ This numbers was taken from several benchmarks. Used hardware is equal to AWS EC
 ## Data management systems latency
 Latency is an important characteristic for data management systems because it helps to understand how fast a system can respond to a read or write request.
 
-| Type of system       | Value |
-| -------------------- | ----- |
-| PostgreSQL           | 2ms   |
-| MySQL                | 2ms   |
-| MongoDB              | 10ms  |
-| Cassandra            | 40ms  |
-| Redis                | 1ms   |
-| Cassandra            | 1-5TB |
-| Elastic (indexing)   | 0.5ms |
-| Elastic (searching ) | 150ms |
-| S3                   | 50ms  |
+| Type of system       | Value  |
+| -------------------- | ------ |
+| PostgreSQL           | 2 ms   |
+| MySQL                | 2 ms   |
+| MongoDB              | 10 ms  |
+| Cassandra            | 40 ms  |
+| Redis                | 1 ms   |
+| Cassandra            | 1-5 TB |
+| Elastic (indexing)   | 0.5 ms |
+| Elastic (searching ) | 150 ms |
+| S3                   | 50 ms  |
 
 
 ## Data management systems throughput
 
-| Type of system | Request type | Value    |
-| -------------- | ------------ | -------- |
-| PostgreSQL     | read         | 23000TPS |
-| PostgreSQL     | write        | 1750TPS  |
-| MySQL          | read         |          |
-| MySQL          | write        |          |
-| MongoDB        | read         | 750TPS   |
-| MongoDB        | write        |          |
-| Elastic        | indexing     | 22KEPS   |
-| Elastic        | searching    | 1KEPS    |
-| Redis          |              |          |
+| Type of system | Request type | Value   |
+| -------------- | ------------ | ------- |
+| PostgreSQL     | read         | 800 TPS |
+| PostgreSQL     | write        | 600 TPS |
+| MySQL          | read         | n/a     |
+| MySQL          | write        | n/a     |
+| MongoDB        | read         | 750 TPS |
+| MongoDB        | write        | n/a     |
+| Elastic        | indexing     | 22K EPS |
+| Elastic        | searching    | 1K EPS  |
+| Redis          | read         | n/a     |
 
 ## Data management systems maximum storage capacity per item
 
@@ -208,26 +208,39 @@ Latency is an important characteristic for data management systems because it he
 | Type of system | Type     | Value                     |
 | -------------- | -------- | ------------------------- |
 | PostgreSQL     | Database | Unlimited                 |
-| PostgreSQL     | Table    | 32TB                      |
+| PostgreSQL     | Table    | 32 TB                     |
 | PostgreSQL     | Row      | 1.6 TB                    |
 | MySQL          | Database | Unlimited                 |
-| MySQL          | Table    | 256TB                     |
-| MySQL          | Row      | 4GB                       |
-| MongoDB        | Database | 64TB                      |
-| Cassandra      | Node     | 1-5TB                     |
+| MySQL          | Table    | 256 TB                    |
+| MySQL          | Row      | 4 GB                      |
+| MongoDB        | Database | 64 TB                     |
+| Cassandra      | Node     | 1-5 TB                    |
 | Redis          | Database | Limited to amount of RAM  |
-| S3             | Object   | 5TB                       |
+| S3             | Object   | 5 TB                      |
 | S3             | Store    | Limited to amount of disk |
 
 ## Data management systems maximum connections
 
-| Type of system | Value  |
-| -------------- | ------ |
-| PostgreSQL     | 3000   |
-| MySQL          | 2000   |
-| MongoDB        | 1      |
-| Cassandra      | 1      |
-| Redis          | 32 768 |
+| Type of system | Value |
+| -------------- | ----- |
+| PostgreSQL     | 3K    |
+| MySQL          | 2K    |
+| MongoDB        | n/a   |
+| Cassandra      | n/a   |
+| Redis          | 30K   |
+
+# Message brokers
+Message brokers are responsible for routing messages between different components of a system. They are used to decouple the sender and receiver of a message, and to provide reliable message delivery.
+This numbers was taken from several benchmarks. Used hardware is equal to AWS EC2 t2.2xlarge (8 cores, 32GB RAM, SSD).
+
+## Message brokers throughput
+
+| Type of broker | Value    |
+| -------------- | -------- |
+| Kafka cluster  | 800K RPS |
+| RabbitMQ       | 40K RPS  |
+| ActiveMQ       | 20K RPS  |
+| NATS           | 1M RPS   |
 
 # Compute
 Compute is the process of executing code on a machine. It is responsible for running applications, processing data, and performing calculations. 
@@ -242,27 +255,15 @@ Typycal datacenter rack is 48U rack with 24 servers, each with 2x 8-core Intel X
 - The total amount of storage is 24 servers * 24 SSDs * 2TB = 1.152TB.
 - The overal amount of network bandwidth is 24 servers * 10Gbps = 240Gbps.
 
-| Type of resource | Value  |
-| ---------------- | ------ |
-| Units            | 48     |
-| Servers          | 24     |
-| CPU cores        | 400    |
-| RAM              | 48TB   |
-| SSD Storage      | 1PB    |
-| LAN throughput   | 30Gb/s |
+| Type of resource | Value   |
+| ---------------- | ------- |
+| Units            | 48      |
+| Servers          | 24      |
+| CPU cores        | 400     |
+| RAM              | 48 TB   |
+| SSD Storage      | 1PB     |
+| LAN throughput   | 30 Gb/s |
 
-
-# Message brokers
-Message brokers are responsible for routing messages between different components of a system. They are used to decouple the sender and receiver of a message, and to provide reliable message delivery.
-
-## Message brokers throughput
-
-| Type of broker | Value    |
-| -------------- | -------- |
-| Kafka cluster  | 800K RPS |
-| RabbitMQ       | 40K RPS  |
-| ActiveMQ       | 20K RPS  |
-| NATS           | 1M RPS   |
 
 
 # Other architectural characteristics
