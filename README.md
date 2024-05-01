@@ -37,7 +37,7 @@ In this material, we will discuss some of the common characteristics for essenti
 
 I have found general numbers for system design calculations, but i tryed to find more specific numbers for each element of the system. I will update this material as i find more specific numbers.
 
-![!Illustration of the system](images/main_scheme_1.png)
+![!Illustration of the system](images/main_scheme.png)
 
 # Latency Comparison Numbers
 Here are some basic numbers that are used for latency estimations during system design:
