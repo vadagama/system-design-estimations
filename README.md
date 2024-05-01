@@ -42,15 +42,15 @@ I have found general numbers for system design calculations, but i tryed to find
 # Latency Comparison Numbers
 Here are some basic numbers that are used for latency estimations during system design:
 
-| Type of operation     | Latency |
-| --------------------- | ------- |
-| L1 cache reference    | 0.5 ns  |
-| L2 cache reference    | 7 ns    |
-| L3 cache reference    | 20 ns   |
-| Main memory reference | 100 ns  |
-| SSD storage read      | 150K ns |
-| Disk seek             | 10ms    |
-| HDD storage read      | 16 ms   |
+| Type of operation | Latency |
+| ----------------- | ------- |
+| L1 cache          | 0.5 ns  |
+| L2 cache          | 7 ns    |
+| L3 cache          | 20 ns   |
+| Main memory       | 100 ns  |
+| SSD storage read  | 150K ns |
+| Disk seek         | 10ms    |
+| HDD storage read  | 16 ms   |
 
 ## Time units
 - 1 ns = 10^-9 seconds
